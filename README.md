@@ -98,3 +98,20 @@ for(fmt in all_fmt){
     overwrite=T)
 }
 ```
+
+```
+save_as_multiple_formats_cairo<-function(filename,width,height){
+  
+  Cairo::CairoPS(paste0(filename,".ps"),width=width,height=height)
+  a_plot
+  dev.off()
+
+  Cairo::CairoPDF(paste0(filename,".pdf"),width=width,height=height)
+  a_plot
+  dev.off()
+
+  Cairo::CairoJPEG(paste0(filename,".jpg"),width=width,height=height,units="in",res=600)
+  a_plot
+  dev.off()
+}
+```
