@@ -2,6 +2,22 @@
 
 ## pryr is no longer supported
 ```
+
+save_as_multiple_formats<-function(filename,width,height){
+  postscript(paste0(filename,".eps"),width=width,height=height,horizontal=FALSE,onefile=FALSE,paper="special")
+  tryCatch(eval(a_plot,envir=parent.frame()),finally=dev.off())
+  
+  pdf(paste0(filename,".pdf"),width=width,height=height)
+  tryCatch(eval(a_plot, envir = parent.frame()),finally=dev.off())
+
+  jpeg(paste0(filename,".jpg"),width=width,height=height,units="in",res=600)
+  tryCatch(eval(a_plot, envir = parent.frame()),finally=dev.off())
+
+  svg(paste0(filename,".svg"),width=width,height=height)
+  tryCatch(eval(a_plot, envir = parent.frame()),finally=dev.off())
+}
+
+
 save_as_multiple_formats<-function(filename,width,height){
   setEPS()
   postscript(paste0(filename,".eps"),width=width,height=height)
