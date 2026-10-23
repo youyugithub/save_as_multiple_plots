@@ -5,20 +5,20 @@
 save_as_multiple_formats<-function(filename,width,height){
   setEPS()
   postscript(paste0(filename,".eps"),width=width,height=height)
-  a_plot
+  eval(a_plot, envir = parent.frame())
   dev.off()
   
   pdf(paste0(filename,".pdf"),width=width,height=height)
-  a_plot
+  eval(a_plot, envir = parent.frame())
   dev.off()
   
   jpeg(paste0(filename,".jpg"),width=width,height=height,units="in",res=600)
-  a_plot
+  eval(a_plot, envir = parent.frame())
   dev.off()
   
-  # svg(paste0(filename,".svg"),width=width,height=height)
-  # a_plot
-  # dev.off()
+  svg(paste0(filename,".svg"),width=width,height=height)
+  eval(a_plot, envir = parent.frame())
+  dev.off()
 }
 
 a_plot <- quote({
